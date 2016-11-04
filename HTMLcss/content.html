@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+    	<title>Homework Week 2</title>  
+    	<link rel="stylesheet" href="style.css">    
+    </head>
+
+	<body>
+		<!--Table-->
+		<table>
+			<thead>
+				<th></th>
+				<th>Header 1</th>
+				<th>Header 2</th>
+				<th>Header 3</th>
+				<th>Header 4</th>
+				<th>Header 5</th>
+			</thead>
+			<tr>
+				<td style="font-style: italic">row 2 col 1</td>
+				<td><font color="red">row 2 col 2</font></td>
+				<td>row 2 col 3</td>
+				<td><font color="blue">row 2 col 4</font></td>
+				<td>row 2 col 5</td>
+				<td>row 2 col 6</td>
+			</tr>
+			<tr>
+				<td style="font-style: italic">row 3 col 1</td>
+				<td><font color="red">row 3 col 2</font></td>
+				<td>row 3 col 3</td>
+				<td><font color="blue">row 3 col 4</font></td>
+				<td>row 3 col 5</td>
+				<td>row 3 col 6</td>
+			</tr>
+			<tr>
+				<td style="font-style: italic">row 4 col 1</td>
+				<td><font color="red">row 4 col 2</font></td>
+				<td>row 4 col 3</td>
+				<td><font color="blue">row 4 col 4</font></td>
+				<td>row 4 col 5</td>
+				<td>row 4 col 6</td>
+			</tr>
+			<tr>
+				<td style="font-style: italic">row 5 col 1</td>
+				<td><font color="red">row 5 col 2</font></td>
+				<td>row 5 col 3</td>
+				<td><font color="blue">row 5 col 4</font></td>
+				<td>row 5 col 5</td>
+				<td>row 5 col 6</td>
+			</tr>			
+			<tfoot>				
+				<td colspan=2>Footer 1</td>
+				<td colspan=4>Footer 2</td>				
+			</tfoot>
+		</table>
+
+		<!--List-->
+		<ul>
+			<li>List Item 1</li>
+				<ul>Sublist 1 Item 1</ul>
+			<li>List Item 2</li>
+				<ul>Sublist 2 Item 1</ul>
+			<li>List Item 3</li>
+				<ul>Sublist 3 Item 1</ul>			
+		</ul>
+
+		<!--Div-->
+		<div class="outer-content" style="margin-top: 20px">
+			<div class="inner-content">
+				Here is some content
+			</div>
+		</div>
+
+		<!--Submissions-->
+		<form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="GET" style="padding-top: 7px;">
+			<div class="border-div">
+				Some GET Data
+				<div class="forms">
+					Text Input: <input type="text" name="text_input"><br>
+				</div>
+				<div class="forms">
+					Number Input: <input type="Number" name="numerical_input"><br>
+				</div>
+				<div class="forms">
+					Password Input: <input type="Password" name="password_input"><br>
+				</div>
+				<div class="forms">
+					<!--Radio Buttons-->
+					Select between:<br>
+					<input type="Radio" name="Snickers" style="margin: 7px">Snickers<br>
+					<input type="Radio" name="Twix" style="margin: 7px">Twix<br>
+					<input type="Radio" name="Milky Way" style="margin: 7px">Milky Way<br>								
+					<input type="submit" value="Submit" style="margin: 7px">
+				</div>
+			</div>			
+		</form>
+
+		<form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="POST" style="padding-top: 7px;">			
+			<div class="border-div">							
+				Some POST Data			
+				<div class="forms">
+					Text Input: <input type="text" name="text_input"><br>
+				</div>
+				<div class="forms">
+					Number Input: <input type="Number" name="numerical_input"><br>
+				</div>
+				<div class="forms">
+					Password Input: <input type="Password" name="password_input"><br>
+				</div>
+				<div class="forms">
+					<!--Radio Buttons-->
+					Select between:<br>
+					<input type="Radio" name="Snickers" style="margin: 6px">Snickers<br>
+					<input type="Radio" name="Twix" style="margin: 6px">Twix<br>
+					<input type="Radio" name="Milky Way" style="margin: 6px">Milky Way<br>					
+					<input type="submit" value="Submit" style="margin: 6px">			
+				</div>
+			</div>						
+		</form>
+	</body>
+</html>

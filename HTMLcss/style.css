@@ -1,0 +1,60 @@
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
+
+body {
+    background-color: white;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+tr:nth-of-type(odd) {
+    background: lightgreen;
+}
+
+tr:nth-of-type(even) {
+    background: lightblue;
+}
+
+th, tfoot td {
+    background: white;
+}
+
+.outer-content {        
+    min-width:75%;
+    min-height:100%; 
+    width:75%; 
+    height:100%; 
+    background: pink;
+    padding: 15px;
+}
+
+.inner-content {
+    margin: 0 auto;    
+    min-width:75%;
+    min-height:75%; 
+    width:75%; 
+    height:75%; 
+    text-align: center;
+    background: lightblue;      
+}
+
+.forms {
+    border: 1px solid black;
+    padding: 7px;
+    margin: 7px;    
+}
+
+.border-div {    
+    border: 1px solid black;
+    padding: 7px;
+}
+
+.border-text {
+    background: white none repeat scroll 0 0;
+    display: inline-block;
+    padding: 0 2px;
+}
