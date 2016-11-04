@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="author" content="Jared Parkinson" charset="UTF-8">
+    <title>Ajax Interactions</title>
+    <h1>Ajax Interactions</h1>
+  </head>  
+  <body>  	
+  	<div>
+  		<h3>Form 1: Weather City/Zip lookup: Enter City or Zip</h3> 
+  		<form id="zipCity">
+  			<fieldset>
+  				<legend>City Lookup</legend>
+  				<label for ="cityLook"></label>
+  				<input type="text" name="cityLook" id="cityLook">  				
+  			</fieldset>
+  			<fieldset>
+  				<legend>Zip Lookup</legend>
+  				<label for ="zipLook"></label>
+  				<input type="text" name="zipLook" id="zipLook">  				
+  			</fieldset>
+  			<input type="submit" id="reqSubmit">
+  		</form>	
+  	</div>
+  	<div>
+		<h3>Lookup Results</h2>  		
+		<table style ="width:50%" border="1px solid black">
+			<tr>
+				<td align="center" style="font-weight: bold">City</td>
+				<td align="center" style="font-weight: bold">Temp</td>
+				<td align="center" style="font-weight: bold">Pressure</td>
+			</tr>
+			<tr>
+				<td id="res-name" align="center">....</td>
+				<td id="res-temp" align="center">....</td>
+				<td id="res-press" align="center">....</td>
+			</tr>
+		</table>
+  	</div>
+	
+	<br><hr>	
+	
+	<div>
+  		<h3>Form 2: POST Form</h3>
+  		<h4>Enter Name, Age and Weight</h4>
+  		<form id="postIt">
+  			<fieldset>
+  				<legend>Name, Age, Weight</legend>
+  				<label for ="postIt"></label>
+  				<input type="text" name="postIt1" id="postItname">
+  				<input type="text" name="postIt2" id="postItage">
+  				<input type="text" name="postIt3" id="postItweight">
+  			</fieldset>
+  			<input type="submit" id="postItSubmit">
+  		</form>	
+  	</div>
+
+  	<div>
+  		<form id="postIt">
+  			<div>
+				<h3>POST Results</h2>
+				<table style ="width:50%" border="1px solid black">
+					<tr>
+						<td align="center" style="font-weight: bold">Name</td>
+						<td align="center" style="font-weight: bold">Age</td>
+						<td align="center" style="font-weight: bold">Weight</td>
+					</tr>
+					<tr>
+						<td id="res-yourname" align="center">....</td>
+						<td id="res-age" align="center">....</td>
+						<td id="res-weight" align="center">....</td>
+					</tr>
+				</table>
+  			</div>	
+  		</form>  		
+  	</div>
+
+  	<script type="text/javascript" src="weatherAPI.js"></script>	
+  </body>
+</html>
