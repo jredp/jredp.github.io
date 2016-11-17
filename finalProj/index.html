@@ -17,6 +17,7 @@
       				<li><a href="#httpCall">GET Call</a></li>
       				<li><a href="#callMethod">API Methods</a></li>
       				<li><a href="#respJson">JSON</a></li>
+      				<li><a href="#DOM">DOM</a></li>
       				<li><a href="#plugin">CORS Plugin</a></li>
       				<li><a href="#theApp">The APP</a></li>
   				</ul>
@@ -42,12 +43,15 @@
 				</a>				
     			<h1>Intro: Getting Started</h1>							
     			<p>
-    				So you want to learn how to use the STEAM API?<br><br>
-    				I am going to assume since you are here that you know enough JavaScript to dabble. What is an API? An API is an application program interface. Basically, this is just a fancy way of saying: "You can ask my system questions and it will provide answers." Many APIs allow ADDing and DELETEing data as well! Isn't that neat? In this tutorial, I am going to walk you through how to build a one page JavaScript application that will make an API call to the STEAM Web API and return our requested data.
-    				<br><br>
-    				At the end of our tutorial, I will be posting an APP example that takes our results and places them into a simple HTML page. This page will be dynamically built using JavaScript to manipulate the HTML of our page! This is called HTML DOM (Document Object Model).<br><br>    				
-    				To learn more about using HTML DOM with JavaScript, go here:   <a class="butFont" target="_blank" href="http://www.w3schools.com/js/js_htmldom.asp">HTML DOM</a>
+    				So you want to learn how to use the <strong>STEAM Web API</strong> with JavaScript?<br><br>
+    				I am going to assume since you are here that you know enough JavaScript to dabble. What is an API? An API is an application program interface. Basically, this is just a fancy way of saying: "You can ask my system questions and it will provide answers." Many APIs allow <strong>ADDing and DELETEing</strong> data as well! Isn't that neat?<br><br>
 
+    				In this tutorial, I am going to walk you through how to build a one page JavaScript application that will make an API call to the STEAM Web API and return our requested data.<br><br>
+
+    				At the end of our tutorial, I will be posting an APP example that takes our results and places them into a simple HTML page. This page will be dynamically built using JavaScript to manipulate the HTML of our page! This is called HTML DOM (Document Object Model).<br><br>    				
+    				To learn more about using HTML DOM with JavaScript, go here:  <a class="butFont" target="_blank" href="http://www.w3schools.com/js/js_htmldom.asp">HTML DOM</a><br><br>
+
+    				I will address a portion of this later in the tutorial, but it isn't extensive.
     			</p>
     			
     		</div>
@@ -59,16 +63,15 @@
     				To be able to make the majority of calls to the STEAM API, you're going to need to get an API key. What is an API key? An API key is your ticket to getting information back from the API. You will provide the API key during 'URL' requests to get information and it will authenticate with their server to make sure you have access to that level of information.<br><br>This isn't hard at all! Let's get started.
 
     				<ol>
-    					<li>The first thing you need is a STEAM account to attach the API key to. If you do not have one, go ahead and go to the STEAM community homepage here: <br><a class="butFont" href="http://steamcommunity.com/">STEAM Sign Up</a></li><br>
-
-    					Click the Join Steam button and fill out the necessary info.<br>
-    					<img class="imageBorder" src="Images\joinsteam.png"><br><br>
+    					<li>The first thing you need is a STEAM account to link with the API key. If you do not have one, go ahead and go to the <strong class="red">STEAM community homepage</strong> here. Click the Join Steam button and fill out the necessary info.<br>
+    						<a class="butFont" target="_blank" href="http://steamcommunity.com/">STEAM Sign Up</a></li><br>				
+    						<img class="imageBorder" src="Images\joinsteam.png"><br><br>
     					
-    					<li>Next, you will need to go to the STEAM Web API Key Register page here:<br><a class="butFont" target="_blank" href="https://steamcommunity.com/dev/apikey">API Key</a><br><br> 
-    					The Domain doesn't necessarily matter, but try to put something that will coincide with your webpage. IE, mine is hosted on github.io, so I will give the Domain of <strong>https://[username].github.io/</strong></li><br>
+    					<li>Next, you will need to go to the <strong class="red">STEAM Web API Key Register</strong> page here:<br><a class="butFont" target="_blank" href="https://steamcommunity.com/dev/apikey">Register API Key</a><br><br> 
+    					The Domain doesn't necessarily matter, but try to put something that will coincide with your webpage. IE, mine is hosted on github.io, so I will give the Domain of <strong class="red">https://[username].github.io/</strong></li><br>
     					<img class="imageBorder" src="Images\register.png"><br><br>
     					
-    					<li>Once you have your API key, the API Key page should always show you your Key when you login. You can return there anytime you need to review your key. You should keep your key Private! If someone takes it and abuses it, you will be the one who has to deal with any issues resulting from that! The API key is going to be part of our request later so keep it handy. I have done a cheap and quick hide of my key in our App later in this tutorial. Please get your own! If you ever lose it, you can simply destroy your API key with the button on that page.</li><br>
+    					<li>Once you have your API key, the API Key page should always show you your Key when you login. You can return there anytime you need to review your key. You should keep your key Private! If someone takes it and abuses it, you will be the one who has to deal with any issues resulting from that! The API key is going to be part of our request later so keep it handy. I have done a cheap and quick hide of my key in our App later in this tutorial. Please get your own! If you ever lose it, you can simply destroy your API key with the <strong class="red">'Revoke My Steam Web API Key'</strong> button on that page.</li><br>
     					<img class="imageBorder" src="Images\hiddenkey.png"><br><br>
     				</ol>
     			</p>
@@ -80,30 +83,31 @@
 				
 				<p>
 					So now that we have the API Key, and I know you know a bit about JavaScript, we are going to take a look at how we are supposed to talk to the STEAM Web API using JavaScript. The playground I like to use to mess around with JavaScript is called JSfiddle, located here:<br>
-					<a class="butFont" target="_blank" href="jsfiddle.net">jsfiddle.net</a><br><br>
+					<a class="butFont" target="_blank" href="https://jsfiddle.net/">jsfiddle.net</a><br><br>
 
-					For the majority of STEAM API calls, you are going to be using what is called an HTTP GET request. Here is a full example that I have taken from our APP. I had to break it up due to the location of the calls, but both pieces are needed to work with a GET request. You can review the full call at the end when I show the APP.
+					For the majority of STEAM API calls, you are going to be using what is called an <strong class="red">HTTP GET</strong> request. Here is a full example that I have taken from our APP. You can review the full call at the end when I show the APP.
 				</p>
-					<img class="imageBorder" src="Images\GETex.png"><br><br>
-					<img class="imageBorder" src="Images\sendEx.png"><br><br>
+					<img class="imageBorder" src="Images\GETex.png"><br><br>					
 				<p>
 					Let me break this down for you piece by piece.<br><br>					
 					The first step of making a GET request in JavaScript is to create a new variable for our request. This is going to be our little request "package". Think of it like this. Have you ever been to a bank drive through that has one of those vacuum tubes where you send your request and they provide you with money?
 				</p>
-					<img class="imageBorder" src="Images\bank.png" align="middle"><br><br>	
+					<img class="imageBorder" src="Images\bank.png" align="middle" width="27%" height="27%"><br><br>	
 				<p>
 					Our GET request is the plastic container that you need to put your "stuff" in! Create this like so:
 				</p>
 					<ul class="codeBlock">var request = new XMLHttpRequest();</ul>
 				<p>
-					A <strong class="red">GET request</strong> is a simple query for something. There is also something called POST which can submit data. For our code in the APP we will run at the end of this tutorial, we are going to use a GET query to return to use some information about how many STEAM games a player owns and some pertinent information about those games.<br>				
+					A <strong class="red">GET request</strong> is a simple query for something. There is also something called POST which can submit data. For our code in the APP, we are going to use a GET query to return information about how many STEAM games a player owns and some pertinent data about those games.<br><br>
+
 					To learn more about requests go here:<br>
 					<a class="butFont" target="_blank" href="http://www.w3schools.com/tags/ref_httpmethods.asp">HTTP Methods: GET and POST</a><br><br>
-					Now that we have our container, we need to put stuff in it! Take a look at the 2nd line of our code below. First, we "open" our container and put in what type of request we are making.				
+
+					Now that we have our container, we need to put stuff in it! Take a look at the second line of our code below. First, we <strong class="red">"open"</strong> our container and put in what type of request we are making.				
 				</p>
 					<ul class="codeBlock">request.open('GET', queryString, true);</ul>
 				<p>
-					So, we now know the first part is what type of request we are doing. What is the second part? The part where my code says <strong class="red">queryString</strong> is actually going to be our full URL request to STEAM. The full URL that goes in that spot is going to looks sort of like the below. I purposely left out the API Key in this situation due to this call not requiring it, and to protect my Key. When using GET, the first portion of the URL after the final / is a question mark. This is to signal a query/question!
+					So, we now know the first part is what type of request we are doing. What is the second part? The part where my code says <strong class="red">queryString</strong> is actually going to be our full URL request to STEAM. The full URL that goes in that spot is going to looks sort of like the below. I purposely left out the API Key in this situation due to this call not requiring it, and to protect my Key. When using GET, the first portion of the URL after the final / is a <strong class="red">question mark</strong>. This is to signal a query/question!
 				</p>		
 					<ul class="codeBlock">https://api.steampowered.com/ISteamNews/GetNewsForApp/v1/?format=json&appid=440/</ul>							
 				<p>
@@ -113,15 +117,17 @@
 
 					Let's move on to the next second section of code!
 				</p>
-				<hr>
+					<hr>
 				<p>
 					The second section has a line stating: <strong class="red">request.addEventListener("load", function...</strong><br>				
 				</p>
 					<img class="imageBorder" src="Images\event.png" align="middle"><br><br>	
 				<p>
-					Basically, what we are doing here is telling our request package with <strong class="red">"load"</strong> to do the very next portion of <strong class="red">function</strong> when we get a callback. Huh? Well, we send out our Bank request with our info in it. When the teller pushes the return button, it notifies the system to return the container. We are telling our program to do X when we get that callback answer!<br><br>
+					Basically, what we are doing here is telling our request package with <strong class="red">"load"</strong> to do the very next portion of <strong class="red">function</strong> when we get a callback. Huh? Well, we send out our Bank request with our info in it. When the teller pushes the return button, it notifies the system to return the container. We are telling our program to do <strong class="red">X function</strong> when we get that callback answer!<br><br>
 
-					I will get to the actual function being called later in the tutorial when I exlpain JSON to you.
+					The <strong class="red">[ request.status >= 200 && request.status < 400 ]</strong> are solely for checking against the server to make sure the response is ok. Otherwise, don't continue our program!<br><br>
+
+					I will explain JSON to you later in the tutorial.
 				</p>
 			</div>
 
@@ -135,27 +141,64 @@
 					<ol>
 						<li><strong>[interface]</strong> - The interface is what "Section" of calls you want to do. IE Looking at players, games, news etc...</li>
 						<li><strong>[method]</strong> - The method is a sub-category of the interface which is a list of calls that can be made on that interface. Our tutorial will be using the IPlayerService to get the games owned by a specific user. (Me)</li>
-						<img class="imageBorder" src="Images\method1.png" align="middle"><br><br>
-						<li><strong>[method_version]</strong> - This is irrelevant to us. There are multiple versions of methods. I just use [/v1/] as the method version. (version 1).</li>
+						<img class="imgBorderW" src="Images\method1.png" align="middle"><br><br>
+						<li><strong>[method_version]</strong> - This is irrelevant to us. There are multiple versions of methods. I just use <strong class="red">[/v1/]</strong> as the method version. (version 1).</li>
 
 					</ol>
 				<p>
-					For our tutorial, since I am using JSfiddle, we will need to use https instead of http.
+					For our tutorial, since I am using JSfiddle, we will need to use <strong>https://api.steampowered.com instead of http</strong>.<br><br>
+
+					There are many number of method calls we can use with the STEAM API. The STEAM API Help link I have listed at the top left of the Navigation Bar is not very well thought out. It isn't very intuitive. The best source I have found for Method listing and Parameter requirements is listed over at <strong class ="red">Team Fortress 2 Wiki</strong><br>
+						
+					<a class="butFont" target="_blank" href="https://wiki.teamfortress.com/wiki/WebAPI">API method help: Team Fortress 2 Wiki</a><br>
+				</p>
+					<hr>
+				<p>
+					If you follow the Team Fortress link, under <strong>IPlayerService</strong> you will see <strong>GetOwnedGames</strong>. Click on that and you can review what method parameters can be called and what ones are required. Required ones are NOT marked <strong class="red">Optional</strong>. Funny though, in this example steamid is REQUIRED. I am not sure why it is marked Optional.
+				</p>
+					<img class="imgBorderW" src="Images\getowned.png" align="middle"><br><br>	
+				<p>
+					Speaking of <strong class="red">STEAM ID</strong>, this is a 64 bit INT. To find your own, 
+					<ol>
+						<li>Login to the STEAM page</li>
+						<li>Click your name on the top right and click <strong>profile</strong> in the dropdown.</li>
+							<img class="imageBorder" src="Images\viewp.png" align="middle" width="20%" height="20%"><br><br>	
+						<li>Then, on the URL address bar in your browser, your ID will be there!</li>
+							<img class="imageBorder" src="Images\64bit.png" align="middle" width="50%" height="50%"><br><br>	
+					</ol>					
+				</p>		
+					<hr>			
+				<p>
+					<strong>EXAMPLE CALLS:</strong><br>
+					So let's take a look at a few example calls that can be made using the IPlayerService I listed above. Once you get the hang of that, then you can properly use pretty much all of the STEAM Web API Calls following that format.
+				</p>
+					<ol>
+						<strong class="red">Base Template:</strong><br>
+						<li class="codeBlock">https://api.steampowered.com/[interface]/[method]/[method_version]/</li>
+						<strong class="red">GetOwnedGames:</strong><br>
+						<li class="codeBlock">https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?format=json<strong class="red">[&apiKeyHere]</strong>&steamid=76561198002826553&include_appinfo=1&include_played_free_games=1</li>
+						<strong class="red">GetRecentlyPlayedGames:</strong><br>
+						<li class="codeBlock">https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?format=json<strong class="red">[&apiKeyHere]</strong>&steamid=76561198002826553&count=5</li>
+						<strong class="red">GetBadges:</strong><br>
+						<li class="codeBlock">https://api.steampowered.com/IPlayerService/GetBadges/v1/?format=json<strong class="red">[&apiKeyHere]</strong>&steamid=76561198002826553</li>
+					</ol>							
+				<p>
+					There are some things I need to mention here.
+					<ol>
+						<li><strong class="red">format=json</strong> is telling the API to return the data in JSON string format. You can use other formats if you wish.</li>
+						<li>The apiKey of course needs to be filled in with your Key.</li>
+						<li><strong class="red">count=5</strong> is an example of only bringing back 5 records.</li>
+						<li>The Steam ID you see here is some random person. You will have to ask someone for their ID if you want to check their data.</li>
+					</ol>
 				</p>
 
-				</p>
-					<ul class="codeBlock">
-						http://api.steampowered.com/ISteamNews/GetNewsForApp/v0001/?format=json&appid=440&count=3
-					</ul>
-				<p>
-					You are probably wondering, <strong>"If we can do that, why would we even do all this work?"</strong> The point of us using all the code is so we can manipulate and work with the data from the response on the fly and make everything appear seamless. When we use code, we can mold the data we recieve into pallatable results!
     		</div>
 
 <!--JSON ===================================================================================================================-->
     		<div class="substance" id="respJson">
 				<h1>The API: JSON - Return to Sender!</h1>
 				<p>
-					The response we are going to get back from the server will come in the for of a JSON Object. What is JSON? JSON stands for JavaScript Object Notation. This is what the server will send back to you as an answer to your "question".<br><br>
+					The response we are going to get back from the server will come in the form of a <strong class="red">JSON Object String</strong>. What is JSON? JSON stands for JavaScript Object Notation. This is what the server will send back to you as an answer to your "question".<br><br>
 					
 					According to the official documentation, the STEAM API allows us to make plain calls to the api directly in a browser just like this link below:
 				</p><br>
@@ -164,18 +207,21 @@
 					</ul>
 					<a class="butFont" target="_blank" href="http://api.steampowered.com/ISteamNews/GetNewsForApp/v1/?format=json&appid=440">TRY IT OUT!</a><br><br>
 				<p>
-					Did you see something like below?
-				</p><br>									
+					You are probably wondering, <strong>"If we can do that, why would we even do all this work?"</strong> The point of us using our application code is so we can manipulate and work with the data from the response on the fly and make everything appear seamless. When we use code, we can mold the data we recieve into pallatable results!
+				</p>
+				<p>
+					Did you see something like below?<br>
+				</p>									
 				<img class="imgBorderW" src="Images\json1.png" align="middle"><br><br>	
 				<p>
-					What the heck is that? This is a JSON response from STEAM! Let's break it down. This might be confusing at first but it's easy once you get it!<br><br>
+					What the heck is that? This is a <strong>JSON response</strong> from STEAM! Let's break it down. This might be confusing at first but it's easy once you get it!<br><br>
 
 					Alright, first of all, the response we get starts with <strong class="red">"appnews": {</strong>. This is a single JSON object. Easy enough. Ok, so what is inside of the JSON object? Everything you see labeled <strong class="red">[ name: { ]</strong> is an object. Everything you see that starts with <strong class="red">[ name: [more stuff here] ]</strong> is a JSON object array full of other objects. In other words, you can have multiple objects inside of objects. It sounds confusing, but as long as you pay attention to indentation and markings, you'll get it!<br><br>
 
 					<ol>
-						<li>The red arrow at the top is pointing to appnews the object.</li>
-						<li>The next item of appid: 440 is the identification number for Team Fortress 2. This is a property of the object appnews.</li>
-						<li><strong class="red">Newsitems</strong> is an object <strong class="red">{</strong> that has a property called newsitem. The two red arrows are pointing to two <strong class="red">newsitem</strong> objects. These objects are in an array <strong class="red">[ ]</strong> of newsitem objects.</li>
+						<li>The red arrow at the top is pointing to <strong>appnews</strong> the object.</li>
+						<li>The next item of <strong>appid: 440</strong> is the identification number for Team Fortress 2. This is a property of the object appnews.</li>
+						<li><strong>Newsitems</strong> is an object <strong class="red">{</strong> that has a property called newsitem. The two red arrows are pointing to two <strong>newsitem</strong> objects. These objects are in an array <strong class="red">[ ]</strong> of newsitem objects.</li>
 					</ol>
 				</p><br>									
 					<img class="imageBorder" src="Images\json2.png" align="middle"><br><br>	
@@ -184,18 +230,41 @@
 				</p>
 					<img class="imageBorder" src="Images\event.png" align="middle"><br><br>	
 				<p>
-				 	We already covered the addEventListener. <strong class="red"> JSON.parse(request.responseText)</strong> is taking that plain text JSON response (which is in a very long single string) and breaks it apart into the structure of a JSON object. Now, when I am working with the Object in JavaScript, I can refer to things like <strong class="red">response.response.AppID</strong>
+				 	We already covered the addEventListener. <strong class="red"> JSON.parse(request.responseText)</strong> is taking that plain text JSON response (which is in a very long string) and breaks it apart into the structure of a JSON object. Now, when I am working with the Object in JavaScript, I can refer to things like <strong class="red">response.response.AppID</strong>!
+				</p>					
+			</div>
+
+<!--DOM ===================================================================================================================-->
+    		<div class="substance" id="DOM">
+				<h1>The JavaScript Code: HTML DOM</h1>
+				<p>
+					Let's take a look at some of the actual APP code we are going to use. Specifically, the HTML DOM section.
 				</p>
-					
+					<img class="imageBorder" src="Images\DOM.png" align="middle"><br><br>
+				<p>
+					What the heck is going on here? Let's break it down!
+				</p>
+					<ol>
+						<li>For every <strong class="red">var = document.createElement</strong> at the top, I am telling it to go to our currently blank <strong>HTML document, and create an html element.</strong></li>
+						<li>I have <strong>NOT</strong> placed them yet. They are just floating around.</li>
+						<li>I have made one var for every piece of information I want from a game that returns in the JSON Object. (Later in the app you will see the for loop going through the games array.)</li>
+						<li>In the Assign HTML DOM Elements section, I am assigning the <strong>logo/icon img src, game store href link, telling the links to open a new window (_blank), and assigning the text content.</strong></li>
+						<li>Anything you see with the <strong class="red">.appendChild</strong>, I am assigning to that particular <strong>HTML element.</strong></li>
+						<li>Finally, the <strong class="red">document.body.appendChild(newDiv)</strong> assigns that full Div with all the content to the HTML Body.</li>
+					</ol><br>				
+				<p>
+					Effectively, this builds a small HTML page for us to go through our data in the <strong class="red">JSfiddle Results tab</strong>!<br>
+					Let's move on to the last section before the APP!
+				</p>
 			</div>
 
 <!--CHROME PLUGIN ============================================================================================================-->
     		<div  class="substance" id="plugin">
     			<h1>The App: Cross-Origin-Policy, STEAM and a Chrome plugin</h1>
     				<p>
-    					Let me give a short explanation of what the STEAM API requires when making calls from your own site.<br><br>
+    					<strong class="red">!!! Before we can move on to our application !!!</strong> let me give a short explanation of what the STEAM API requires when making calls from your own site.<br><br>
 
-						Typically, the STEAM API requires the use of a server because Cross-Origin requests are explicitly denied (Huh?). If you attempt to make a call to an API with this restriction, you will end up with the below error message:<br>
+						Typically, the STEAM API requires the use of a server because <strong class="red">Cross-Origin</strong> requests are explicitly denied (Huh?). If you attempt to make a call to an API with this restriction, you will end up with the below error message:<br>
 					</p>				
 						<ul class="codeBlock">
 							XMLHttpRequest cannot load "...API URL...". No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin '...URL...' is therefore not allowed access.
@@ -207,19 +276,21 @@
 						There is a way for us to make calls using our own JavaScript in JSfiddle if we do the following:
 					</p>					
 					<ol>
-						<li>Use the Google Chrome Browser</li>
-						<li>Install the Chrome Plugin <a class="butFont" target="_blank" href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en">HERE</a></li>					
+						<li><strong>Use the Google Chrome Browser</strong></li>
+						<li><strong>Install the Chrome Plugin</strong> <a class="butFont" target="_blank" href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en">HERE</a></li>					
 					</ol>		
 					<p>
-						Go ahead and open your Google Chrome browser, or if you have it open, head over to the link in #2 and install the plugin. It will throw a small message asking for permission. Go ahead and hit allow.
+						Go ahead and open your Google Chrome browser, or if you have it open, head over to the link in #2 and install the plugin. It will throw a small message asking for permission. Go ahead and hit allow.<br><br>					
+						<strong class="red">**NOTE** --- </strong><strong><mark>This step is a MUST if you want to view the working APP at the end of this tutorial.</mark></strong><strong class="red"> ---  **NOTE**</strong>					
 					</p>
+					<hr>
 						<img class="imageBorder" src="Images\addin.png" align="middle"><br><br>	
 					<p>
-						Great! Now, it will be installed on the top right of your Chrome and it will be labelled CORS. This will be green when it is on and red when it is off. 
+						Great! Now, it will be installed on the top right of your Chrome and it will be labelled <strong class="red">CORS</strong>. This will be green when it is on and red when it is off. 
 					</p>
-						<img class="imageBorder" src="Images\corsDrop.png" align="middle"><br><br>	
+						<img class="imgBorderW" src="Images\corsDrop.png" align="middle"><br><br>	
 					<p>					
-						In short: The Cross-Origin Policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different origin (e.g., different domain) than the one from which it was served.<br><br>
+						<strong>In short:</strong> The Cross-Origin Policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different origin (e.g., different domain) than the one from which it was served.<br><br>
 					
 						If you would like to learn more about Cross-Origin-Resource-Sharing, take a look <a class="butFont" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">MozillaDev CORS</a> or <a class="butFont" target="_blank" href="https://spring.io/understanding/CORS">Spring CORS</a>
 					</p>
@@ -233,17 +304,26 @@
 			
 <!--JSfiddle Embed ===============================================================================================================-->
 			<div  class="substance" id="theApp">
-				<h1>The App: The Final Result</h1>						
-				<iframe width="70%" height="1200" src="https://jsfiddle.net/jredp/6os497jp/8/embedded/js,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-				</iframe>
-			</div>
+				<h1>The App: The Final Result</h1>		
+				<p>					
+					Finally! We are here! After all of that hard work, we can finally see a working example of all of those skills put together. This is a very minimal HTML page example for the purpose of this tutorial. I encourage you to try out your own calls and build you own page using this tutorial.<br><br>
 
-<!--DOM ===================================================================================================================-->
-			<div>
+					I have placed the code into separate functions of their own in an attempt to encapsulate the variables so there are no Global variables.<br><br>
 
-				
+					Go ahead and review the code right now. Does it make sense to you?<br><br>
+
+					Now try the <strong>Results</strong> tab!<br>
+					<strong class="red">!!! BEFORE YOU HIT RESULTS: Remember to turn on the CORS plugin !!!</strong><br>
+				</p>
+					<img class="imgBorderW" src="Images\corsDrop.png" align="middle" width="25%" height="25%"><br>
+					<iframe width="70%" height="1750" src="https://jsfiddle.net/jredp/1dd4zu04/1/embedded/js,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+				<p>
+					And that is it! There should be a list of 103 games there with their Icons/Logos. If you <strong>click the Icons or Logos</strong>, it will take you to the STEAM STORE page of each game! Thanks for taking the time to read this entire tutorial!<br><br>
+
+					<strong class="red">-Jared Parkinson</strong><br>
+					<img class="imageBorder" src="Images\JPinitialsMOD2.png" align="middle" width="15%" height="15%">	
+				</p>
 			</div>
-    
   		</div>
 	</section>
   </body>
