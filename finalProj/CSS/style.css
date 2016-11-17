@@ -5,6 +5,12 @@ html, body {
     padding: 0px;    
 }
 
+ol li, ul li {
+    color: black;
+    font-size: 19px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;     
+}
+
 #bg1{
     background: url(../Images/Wood.jpg); 
     background-size:cover;
@@ -12,6 +18,64 @@ html, body {
     background-attachment:fixed;
 }
 
+/*-- Link to STEAM site --*/
+.siteLink {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 0px;
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    text-decoration: none;
+}
+
+.siteLink:hover {
+    color: #d142f4;
+}
+
+/*-- Fixed Navigation Bar --*/
+.navigation {
+    width: 90%;
+    max-width: 960px;
+    margin:  0 auto;
+}
+
+.siteNavBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; /*Always on top order*/
+    width: 100%;
+    height: 50px;
+    background-color: #727599;
+}
+
+.siteNavBar a {
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.navItems {
+    display: inline-block;    
+}
+
+.navItems a {
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    text-decoration: none;
+}
+
+.navItems a:hover {
+    color: #d142f4;
+}
+
+.navItems li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;        
+}
+
+/*-- Fixed Top Intro Bar with Background --*/
 .topBar {
     text-align:center; 
     position:relative;
@@ -30,9 +94,23 @@ html, body {
     top:50%; 
     height:10em; 
     margin-top:-5em; 
-    width:100%;
+    width:100%;    
 }
 
+.topBar h1, .topBar p { 
+    color: #ffffff;
+    font-family: "Arial Black", Gadget, sans-serif;            
+}
+
+.topBar h1 {
+    font-size: 50px;    
+}
+
+.topBar p {
+    font-size: 20px;    
+}
+
+/*-- Body Main Content --*/
 .content {
     background-color: #d0cfd1;
     text-align:center; 
@@ -52,7 +130,7 @@ html, body {
 .content .substance {
     background-color: white;
     border-radius: 20px;    
-    width: 75%;            
+    width: 60%;            
     top:0;
     bottom: 0;
     left: 0;
@@ -61,71 +139,90 @@ html, body {
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    min-height: 100%;    
+    min-height: 100%;   
+    padding: 30px;     
     flex-grow: 1;
-}
-
-.topBar h1, .topBar p { 
-    color: #ffffff;
-    font-family: "Arial Black", Gadget, sans-serif;
 }
 
 .content h1, .content p {
     color:#333;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
 }
 
-.siteNavBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999; /*Always on top order*/
-    width: 100%;
-    height: 50px;
+.content h1 {
+    font-size: 36px; 
+}
+
+.content p {
+    text-align: left;
+    font-size: 19px; 
+}
+
+.content ol {
+    color:#333;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-align: left;   
+}
+
+/*-- Image and Font --*/
+.imageBorder {
+    border-radius: 20px;
+}
+
+.imgBorderW {
+    border-radius: 20px;   
+    padding: 1px;
+    border: 1px solid #021a40;
+    background-color: blue;
+}
+
+.fontBack {
+    background-color: lightgrey;
+}
+
+.codeBlock {
+    display: block;    
+    padding: 9px;
+    margin: 0 0 10px;
+    font-size: 18px;    
+    /*color: #333;*/
+    color: blue;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #ced0e0;
+    border: 1px solid #ccc;
+    border-radius: 4px;    
+    text-align: center;        
+}
+
+.butFont {    
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 7px;
+    border: darkgrey 1px;
     background-color: #727599;
+    padding-top: 3px;    
+    padding-bottom: 3px;    
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: 0px;
 }
 
-.siteNavBar a {
-    color: #ffffff;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-.navigation {
-    width: 90%;
-    max-width: 960px;
-    margin:  0 auto;
-}
-
-.navItems {
-    display: inline-block;
-}
-
-.navItems a {
-    color: #ffffff;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
-    text-decoration: none;
-}
-
-.navItems a:hover {
+.butFont:hover {
     color: #d142f4;
 }
 
-.navItems li {
-    display: inline-block;
-    margin-right: 10px;
-    margin-left: 10px;    
+.red {
+    color: red;
 }
 
-.siteLink {
-    display: inline-block;
-    margin-right: 20px;
-    margin-left: 10px;
-    color: #ffffff;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
-    text-decoration: none;
+/*
+.mouseOver {
+    outline-style: dashed;
+    outline-width: 2px;
+    outline-color: white; 
+    outline-offset: 3px;   
 }
-
-.siteLink:hover {
-    color: #d142f4;
-}
+*/
