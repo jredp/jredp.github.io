@@ -65,14 +65,14 @@
     				<ol>
     					<li>The first thing you need is a STEAM account to link with the API key. If you do not have one, go ahead and go to the <strong class="red">STEAM community homepage</strong> here. Click the Join Steam button and fill out the necessary info.<br>
     						<a class="butFont" target="_blank" href="http://steamcommunity.com/">STEAM Sign Up</a></li><br>				
-    						<img class="imageBorder" src="Images\joinsteam.png"><br><br>
+    						<img class="imageBorder" src="Images/joinsteam.png"><br><br>
     					
     					<li>Next, you will need to go to the <strong class="red">STEAM Web API Key Register</strong> page here:<br><a class="butFont" target="_blank" href="https://steamcommunity.com/dev/apikey">Register API Key</a><br><br> 
     					The Domain doesn't necessarily matter, but try to put something that will coincide with your webpage. IE, mine is hosted on github.io, so I will give the Domain of <strong class="red">https://[username].github.io/</strong></li><br>
-    					<img class="imageBorder" src="Images\register.png"><br><br>
+    					<img class="imageBorder" src="Images/register.png"><br><br>
     					
     					<li>Once you have your API key, the API Key page should always show you your Key when you login. You can return there anytime you need to review your key. You should keep your key Private! If someone takes it and abuses it, you will be the one who has to deal with any issues resulting from that! The API key is going to be part of our request later so keep it handy. I have done a cheap and quick hide of my key in our App later in this tutorial. Please get your own! If you ever lose it, you can simply destroy your API key with the <strong class="red">'Revoke My Steam Web API Key'</strong> button on that page.</li><br>
-    					<img class="imageBorder" src="Images\hiddenkey.png"><br><br>
+    					<img class="imageBorder" src="Images/hiddenkey.png"><br><br>
     				</ol>
     			</p>
     		</div>
@@ -87,12 +87,12 @@
 
 					For the majority of STEAM API calls, you are going to be using what is called an <strong class="red">HTTP GET</strong> request. Here is a full example that I have taken from our APP. You can review the full call at the end when I show the APP.
 				</p>
-					<img class="imageBorder" src="Images\GETex.png"><br><br>					
+					<img class="imageBorder" src="Images/GETex.png"><br><br>					
 				<p>
 					Let me break this down for you piece by piece.<br><br>					
 					The first step of making a GET request in JavaScript is to create a new variable for our request. This is going to be our little request "package". Think of it like this. Have you ever been to a bank drive through that has one of those vacuum tubes where you send your request and they provide you with money?
 				</p>
-					<img class="imageBorder" src="Images\bank.png" align="middle" width="27%" height="27%"><br><br>	
+					<img class="imageBorder" src="Images/bank.png" align="middle" width="27%" height="27%"><br><br>	
 				<p>
 					Our GET request is the plastic container that you need to put your "stuff" in! Create this like so:
 				</p>
@@ -121,7 +121,7 @@
 				<p>
 					The second section has a line stating: <strong class="red">request.addEventListener("load", function...</strong><br>				
 				</p>
-					<img class="imageBorder" src="Images\event.png" align="middle"><br><br>	
+					<img class="imageBorder" src="Images/event.png" align="middle"><br><br>	
 				<p>
 					Basically, what we are doing here is telling our request package with <strong class="red">"load"</strong> to do the very next portion of <strong class="red">function</strong> when we get a callback. Huh? Well, we send out our Bank request with our info in it. When the teller pushes the return button, it notifies the system to return the container. We are telling our program to do <strong class="red">X function</strong> when we get that callback answer!<br><br>
 
@@ -141,7 +141,7 @@
 					<ol>
 						<li><strong>[interface]</strong> - The interface is what "Section" of calls you want to do. IE Looking at players, games, news etc...</li>
 						<li><strong>[method]</strong> - The method is a sub-category of the interface which is a list of calls that can be made on that interface. Our tutorial will be using the IPlayerService to get the games owned by a specific user. (Me)</li>
-						<img class="imgBorderW" src="Images\method1.png" align="middle"><br><br>
+						<img class="imgBorderW" src="Images/method1.png" align="middle"><br><br>
 						<li><strong>[method_version]</strong> - This is irrelevant to us. There are multiple versions of methods. I just use <strong class="red">[/v1/]</strong> as the method version. (version 1).</li>
 
 					</ol>
@@ -156,15 +156,15 @@
 				<p>
 					If you follow the Team Fortress link, under <strong>IPlayerService</strong> you will see <strong>GetOwnedGames</strong>. Click on that and you can review what method parameters can be called and what ones are required. Required ones are NOT marked <strong class="red">Optional</strong>. Funny though, in this example steamid is REQUIRED. I am not sure why it is marked Optional.
 				</p>
-					<img class="imgBorderW" src="Images\getowned.png" align="middle"><br><br>	
+					<img class="imgBorderW" src="Images/getowned.png" align="middle"><br><br>	
 				<p>
 					Speaking of <strong class="red">STEAM ID</strong>, this is a 64 bit INT. To find your own, 
 					<ol>
 						<li>Login to the STEAM page</li>
 						<li>Click your name on the top right and click <strong>profile</strong> in the dropdown.</li>
-							<img class="imageBorder" src="Images\viewp.png" align="middle" width="20%" height="20%"><br><br>	
+							<img class="imageBorder" src="Images/viewp.png" align="middle" width="20%" height="20%"><br><br>	
 						<li>Then, on the URL address bar in your browser, your ID will be there!</li>
-							<img class="imageBorder" src="Images\64bit.png" align="middle" width="50%" height="50%"><br><br>	
+							<img class="imageBorder" src="Images/64bit.png" align="middle" width="50%" height="50%"><br><br>	
 					</ol>					
 				</p>		
 					<hr>			
@@ -212,7 +212,7 @@
 				<p>
 					Did you see something like below?<br>
 				</p>									
-				<img class="imgBorderW" src="Images\json1.png" align="middle"><br><br>	
+				<img class="imgBorderW" src="Images/json1.png" align="middle"><br><br>	
 				<p>
 					What the heck is that? This is a <strong>JSON response</strong> from STEAM! Let's break it down. This might be confusing at first but it's easy once you get it!<br><br>
 
@@ -224,11 +224,11 @@
 						<li><strong>Newsitems</strong> is an object <strong class="red">{</strong> that has a property called newsitem. The two red arrows are pointing to two <strong>newsitem</strong> objects. These objects are in an array <strong class="red">[ ]</strong> of newsitem objects.</li>
 					</ol>
 				</p><br>									
-					<img class="imageBorder" src="Images\json2.png" align="middle"><br><br>	
+					<img class="imageBorder" src="Images/json2.png" align="middle"><br><br>	
 				<p>
 					Lastly, I promised I would talk about the JSON code sample below.
 				</p>
-					<img class="imageBorder" src="Images\event.png" align="middle"><br><br>	
+					<img class="imageBorder" src="Images/event.png" align="middle"><br><br>	
 				<p>
 				 	We already covered the addEventListener. <strong class="red"> JSON.parse(request.responseText)</strong> is taking that plain text JSON response (which is in a very long string) and breaks it apart into the structure of a JSON object. Now, when I am working with the Object in JavaScript, I can refer to things like <strong class="red">response.response.AppID</strong>!
 				</p>					
@@ -240,7 +240,7 @@
 				<p>
 					Let's take a look at some of the actual APP code we are going to use. Specifically, the HTML DOM section.
 				</p>
-					<img class="imageBorder" src="Images\DOM.png" align="middle"><br><br>
+					<img class="imageBorder" src="Images/DOM.png" align="middle"><br><br>
 				<p>
 					What the heck is going on here? Let's break it down!
 				</p>
@@ -284,11 +284,11 @@
 						<strong class="red">**NOTE** --- </strong><strong><mark>This step is a MUST if you want to view the working APP at the end of this tutorial.</mark></strong><strong class="red"> ---  **NOTE**</strong>					
 					</p>
 					<hr>
-						<img class="imageBorder" src="Images\addin.png" align="middle"><br><br>	
+						<img class="imageBorder" src="Images/addin.png" align="middle"><br><br>	
 					<p>
 						Great! Now, it will be installed on the top right of your Chrome and it will be labelled <strong class="red">CORS</strong>. This will be green when it is on and red when it is off. 
 					</p>
-						<img class="imgBorderW" src="Images\corsDrop.png" align="middle"><br><br>	
+						<img class="imgBorderW" src="Images/corsDrop.png" align="middle"><br><br>	
 					<p>					
 						<strong>In short:</strong> The Cross-Origin Policy is an important security concept implemented by web browsers to prevent Javascript code from making requests against a different origin (e.g., different domain) than the one from which it was served.<br><br>
 					
@@ -315,13 +315,13 @@
 					Now try the <strong>Results</strong> tab!<br>
 					<strong class="red">!!! BEFORE YOU HIT RESULTS: Remember to turn on the CORS plugin !!!</strong><br>
 				</p>
-					<img class="imgBorderW" src="Images\corsDrop.png" align="middle" width="25%" height="25%"><br>
+					<img class="imgBorderW" src="Images/corsDrop.png" align="middle" width="25%" height="25%"><br>
 					<iframe width="70%" height="1750" src="https://jsfiddle.net/jredp/1dd4zu04/1/embedded/js,css,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 				<p>
 					And that is it! There should be a list of 103 games there with their Icons/Logos. If you <strong>click the Icons or Logos</strong>, it will take you to the STEAM STORE page of each game! Thanks for taking the time to read this entire tutorial!<br><br>
 
 					<strong class="red">-Jared Parkinson</strong><br>
-					<img class="imageBorder" src="Images\JPinitialsMOD2.png" align="middle" width="15%" height="15%">	
+					<img class="imageBorder" src="Images/JPinitialsMOD2.png" align="middle" width="15%" height="15%">	
 				</p>
 			</div>
   		</div>
