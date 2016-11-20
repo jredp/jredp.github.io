@@ -21,6 +21,10 @@ font-family: "Helvetica", "Garamond", "serif";
     background-size: cover;
 }
 
+.main {
+    background: url(Images/brush.png);
+}
+
 .stretch {
     margin: 0;
     padding: 0; 
