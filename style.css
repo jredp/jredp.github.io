@@ -1,5 +1,4 @@
-/* 
---Fresh start for Fonts--
+/*--Fresh start for Fonts--*/
 html, body, h1, h2, h3, 
 h4, p, ol, ul, li, a {
     padding: 0;
@@ -9,37 +8,19 @@ h4, p, ol, ul, li, a {
     font: inherit;
 }
 
---Fallback Fonts--
-font-family: "Helvetica", "Garamond", "serif";
+/*--Fallback Fonts--
+font-family: "Helvetica", "Garamond", "serif";*/
 
---Forms--
-input[type=text], label [for=blah] {
-    
-}
-
-body {
-    color: navy;
-    background: #ffffff url("file:///C:/Users/jparkinson/Dropbox/Documents/Web Dev/Land3R/Images/Wood.jpg")top left repeat;
-}
-*/
 
 #background {
-    width: 100%; 
-    height: 100%; 
-    position: absolute; 
-    left: 0px; 
-    top: 0px; 
-    z-index: 0;
+    background: url('images/Wood.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-/*.stretch {
-    width:100%;
-    height:100%;
-}    */
-
 .stretch {
-    min-width:100%;
-    min-height:100%; 
-    width:auto; 
-    height:auto; 
+    margin: 0;
+    padding: 0; 
 }
