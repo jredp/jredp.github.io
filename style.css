@@ -8,9 +8,10 @@ h4, p, ol, ul, li, a {
     font: inherit;
 }
 
-/*--Fallback Fonts--
-font-family: "Helvetica", "Garamond", "serif";*/
-
+/*
+--Fallback Fonts--
+font-family: "Helvetica", "Garamond", "serif";
+*/
 
 #background {
     background: url('images/Wood.jpg') no-repeat center center fixed; 
