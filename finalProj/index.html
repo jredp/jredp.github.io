@@ -3,8 +3,17 @@
 <html>
   <head>    
     <title>STEAM API Tutorial</title>
-    <meta name="author" content="Jared Parkinson" charset="UTF-8">    
+    <meta name="author" content="Jared Parkinson" charset="UTF-8" http-equiv="imagetoolbar" content="no" />        
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    	<script language=JavaScript> 
+    		var message="Function Disabled!"; 
+    		function clickIE4(){ if (event.button==2){ alert(message); return false; } }
+    		function clickNS4(e){ if (document.layers||document.getElementById&&!document.all)
+    							{ if (e.which==2||e.which==3){ alert(message); return false; } } } 
+    		if (document.layers){ document.captureEvents(Event.MOUSEDOWN); document.onmousedown=clickNS4; } 
+    		else if (document.all&&!document.getElementById){ document.onmousedown=clickIE4; } 
+    		document.oncontextmenu=new Function("alert(message);return false") 
+    	</script>
   </head>  
 
   <body>  	  	
@@ -321,7 +330,7 @@
 					And that is it! There should be a list of 103 games there with their Icons/Logos. If you <strong>click the Icons or Logos</strong>, it will take you to the STEAM STORE page of each game! Thanks for taking the time to read this entire tutorial!<br><br>
 
 					<strong class="red">-Jared Parkinson</strong><br>
-					<img class="imageBorder" src="Images/JPinitialsMOD2.png" align="middle" width="15%" height="15%">	
+					<img class="imageBorder" src="Images/JPinitialsMOD2.png" galleryimg="no" align="middle" width="15%" height="15%">	
 				</p>
 			</div>
   		</div>
