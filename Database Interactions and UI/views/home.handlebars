@@ -1,0 +1,53 @@
+<h1>Add New Exercise</h1>
+	<!-- ADD FORM / -->
+	<form method="post" id="exer">
+    	<label for="curData" class="intSet">Enter a new Exercise:</label>
+    	<input id="name" type="text" name="name" placeholder="Exer Name">
+    	<input id="reps" type="text" name="reps" placeholder="Reps">
+    	<input id="weight" type="text" name="weight" placeholder="Weight (default lbs)">
+    	<input id="date" type="date" name="date" placeholder="date">
+    	<input id="units" type="checkbox" name="units" value="checkMe" checked=""><label for="units">Check for Kilograms</label>        
+    	<input id="addMe" type="submit" name="addMe" value="addMe">
+	</form>    
+<hr>
+<h1>Your Exercise Data</h1>
+    {{#if results.message}} {{results.message}} {{/if}}
+    <!-- Data TABLE -->
+	<table border = 1 class="inSet">
+    	<thead>
+        	<trow>
+            	<th> Ex Name </th>
+            	<th> Reps </th>
+            	<th> Weight </th>
+            	<th> Date </th>
+            	<th> lbs/kg </th>
+                <th> Edit </th>
+                <th> Delete </th>
+        	</trow>
+    	</thead>
+
+    	<tbody id="dataTable">                    
+        	{{#if results}} {{#each results}}
+        	<tr id="{{this.id}}">
+            	<td id="col1" class="cell-id">{{this.name}}</td>
+            	<td id="col2">{{this.reps}}</td>
+            	<td id="col3">{{this.weight}}</td>
+            	<td id="col4">{{this.mydate}}</td>
+            	<td id="col5">{{#if this.units}}kg{{else}}lbs{{/if}}</td>
+            	<td id="col6">
+                	<form method="get" action="/edit">
+                    	<input type="hidden" name="id" value="{{this.id}}">
+                    	<input type="submit" class="button" name="edit" id="editMe" value=" Edit ">                    	
+                	</form>
+            	</td>                    
+                <td id="col7">
+                    <form method="POST">
+                        <input type="hidden" id="delMe" value="{{this.id}}">
+                        <input type="submit" class="button" name="delete" value=" Delete " >
+                    </form>
+                </td>
+        	</tr>
+        	{{/each}} {{/if}}
+    	</tbody>
+	</table>    
+<script type="text/javascript" src="static/js/workout.js"></script>     

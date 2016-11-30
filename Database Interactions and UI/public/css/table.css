@@ -1,0 +1,29 @@
+td {
+
+}
+.cell-id {
+    text-align: center;
+    background-color: lightgray;
+}
+
+.inSet, .section-title {
+    margin-left: 20px;
+}
+
+.inSet {
+    display: inline-block; 
+}
+
+.header {
+    background-color: #890b0b;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    text-decoration: none;
+    text-align: center;
+}
+
+.button {
+    font-weight:bold;
+    color:blue;
+}

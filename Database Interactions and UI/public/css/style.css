@@ -1,0 +1,213 @@
+.main {
+    background: url(../images/brush.png);      
+}
+
+html, body {
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;    
+}
+
+/*----------------TABLE--------------------*/
+th {
+    background-color: #890b0b;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    text-decoration: none;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.cell-id {
+    text-align: center;
+    background-color: lightgray;
+}
+
+.inSet, .section-title {
+    margin-left: 20px;
+}
+
+.inSet {
+    display: inline-block; 
+}
+
+.button {
+    font-weight:bold;
+    color:blue;
+}
+
+/*----------------TABLE--------------------*/
+
+/*------------------------------------------------------*/
+/*-- Fixed Top Intro Bar with Background --*/
+#bg1{
+    background: url(../images/Wood.jpg); 
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;
+}
+
+.topBar {
+    text-align:center; 
+    position:relative;
+    width: 100%;
+}
+
+.topBar .inner{
+    background: rgba(0,0,0,0.7) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAD0lEQVQIW2NkQABjRmQOAAM+AGkQsDBSAAAAAElFTkSuQmCC) repeat;
+    min-height:200px;
+    position: relative;
+    width: 100%;
+}
+
+.topBar .writing {
+    position:absolute; 
+    top:50%;     
+    margin-top:-6em; 
+    width:100%;    
+}
+
+.topBar h1, .topBar p { 
+    color: #ffffff;
+    font-family: "Arial Black", Gadget, sans-serif;            
+}
+
+.topBar h1 {
+    font-size: 40px;    
+}
+
+.topBar p {
+    font-size: 20px;    
+}
+/*------------------------------------------------------*/
+
+/*-- Fixed Navigation Bar --*/
+.siteNavBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999; /*Always on top order*/
+    width: 100%;
+    height: 75px;
+    background-color: #890b0b;
+}
+
+.navTextSection {    
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;    
+    margin: 0 auto;    
+    position: relative;
+}
+
+.navItems {
+    height: 100%;
+    width: 90%;
+}
+
+.navItems a {
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    text-decoration: none;
+}
+
+.navItems a:hover {    
+    background-color: #380000;    
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: #000000; 
+    outline-offset: 2px;
+}
+
+.navItems li {        
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;        
+    margin-top: 4px;
+    font-size: 25px;
+}
+
+/*-- Body Main Content --*/
+.content {    
+    text-align:center; 
+    position:relative;
+    width: 100%;   
+    height: 100%;
+    display: flex; 
+    margin-top: 75px;
+}
+
+.content .inner {
+    flex-grow: 1;
+    margin: auto;
+    width: 100%;
+}
+
+.content .substance {
+    background-color: white;
+    border-radius: 8px;    
+    width: 80%;            
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 100%;   
+    padding: 30px;     
+    flex-grow: 1;
+}
+
+.contQuery {
+    overflow: auto;
+    height: 33%;
+    padding: 8px;
+    background-color: lightgrey;
+    border-radius: 8px;
+}
+
+.contQuery h1, .contQuery p {
+    color:#333;
+    text-align: left;
+    font-size: 19px;    
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;     
+}
+
+.contQuery h1 {
+    text-align: center;
+    font-size: 36px; 
+}
+
+/*-- Buttons --*/
+.butFont {    
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 7px;
+    border: darkgrey 1px;
+    background-color: #890b0b;
+    padding-top: 3px;    
+    padding-bottom: 3px;    
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-left: 0px;
+}
+
+.butFont:hover {
+    background-color: #380000;
+}
+
+.request{
+    margin: auto;
+}
+
+.request .request-category{
+   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+   font-weight: bold; 
+}

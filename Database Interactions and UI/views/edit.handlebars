@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="static/css/style.css">
+<h2>Update your Exercise Data</h2>
+<form method ="post" action="/update">
+  <label for="name">Name: </label>  
+  <input id="name" type="text" name="name" value="{{results.[0].name}}">
+  <label for="reps">Reps: </label>
+  <input id="reps" type="text" name="reps" value={{results.[0].reps}}>
+  <label for="weight">Weight: </label>
+  <input id="weight" type="text" name="weight" value={{results.[0].weight}}>
+  <label for="date">Date: </label>
+  <input id="date" type="date" name="date" value={{results.[0].mydate}}>
+  <label for="units">Check for kg: </label>
+  <input id="units" type="checkbox" name="units" value="units" {{#if results.[0].units}}checked{{/if}}>
+  <br/>
+  <input type="hidden" name="id" value={{results.[0].id}}>  
+  <input class="button" id="update" type="submit" name="update" id="updateMe" value="Update">
+</form>
