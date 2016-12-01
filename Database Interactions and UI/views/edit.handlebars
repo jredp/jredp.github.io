@@ -1,16 +1,23 @@
+<!-- //////////////////////////////////////////////
+// Author: Jared Parkinson
+// Mail: parkinja @ oregonstate . edu
+// CS290 - Final Project
+// MySQL Database Exercise Tracker
+//////////////////////////////////////////////// -->
+
 <link rel="stylesheet" href="static/css/style.css">
 <h2>Update your Exercise Data</h2>
 <form method ="post" action="/update">
-  <label for="name">Name: </label>  
+  <label for="name"><strong>Name: </strong></label>  
   <input id="name" type="text" name="name" value="{{results.[0].name}}">
-  <label for="reps">Reps: </label>
+  <label for="reps"><strong>Reps: </strong></label>
   <input id="reps" type="text" name="reps" value={{results.[0].reps}}>
-  <label for="weight">Weight: </label>
+  <label for="weight"><strong>Weight: </strong></label>
   <input id="weight" type="text" name="weight" value={{results.[0].weight}}>
-  <label for="date">Date: </label>
+  <label for="date"><strong>Date: </strong></label>
   <input id="date" type="date" name="date" value={{results.[0].mydate}}>
-  <label for="units">Check for kg: </label>
-  <input id="units" type="checkbox" name="units" value="units" {{#if results.[0].units}}checked{{/if}}>
+  <label for="lbs"><strong>Uncheck for kg. Lbs default: </strong></label>
+  <input id="lbs" type="checkbox" name="lbs" value="lbs" {{#if results.[0].lbs}}checked{{/if}}>
   <br/>
   <input type="hidden" name="id" value={{results.[0].id}}>  
   <input class="button" id="update" type="submit" name="update" id="updateMe" value="Update">

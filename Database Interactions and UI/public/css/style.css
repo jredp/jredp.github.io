@@ -1,3 +1,10 @@
+/*-------------------------------------------
+// Author: Jared Parkinson
+// Mail: parkinja @ oregonstate . edu
+// CS290 - Final Project
+// MySQL Database Exercise Tracker
+-------------------------------------------*/
+
 .main {
     background: url(../images/brush.png);      
 }
@@ -20,6 +27,23 @@ th {
     padding-left: 6px;
     padding-right: 6px;
 }
+
+#messageP {
+    color: #4542f4;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 7px;
+    padding: 1px;
+    border: 3px solid #021a40;    
+    background-color: #ffffff;    
+    margin-left: 0px; 
+    min-height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+}
+
 .cell-id {
     text-align: center;
     background-color: lightgray;
@@ -38,7 +62,23 @@ th {
     color:blue;
 }
 
-/*----------------TABLE--------------------*/
+.hFont {    
+    color: #ffffff;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 7px;
+    border: darkgrey 1px;
+    background-color: #890b0b;
+    padding-top: 3px;    
+    padding-bottom: 3px;    
+    padding-right: 5px;
+    padding-left: 5px;    
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
 
 /*------------------------------------------------------*/
 /*-- Fixed Top Intro Bar with Background --*/
@@ -83,53 +123,6 @@ th {
 }
 /*------------------------------------------------------*/
 
-/*-- Fixed Navigation Bar --*/
-.siteNavBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999; /*Always on top order*/
-    width: 100%;
-    height: 75px;
-    background-color: #890b0b;
-}
-
-.navTextSection {    
-    height: 100%;
-    width: 100%;
-    max-width: 1000px;    
-    margin: 0 auto;    
-    position: relative;
-}
-
-.navItems {
-    height: 100%;
-    width: 90%;
-}
-
-.navItems a {
-    color: #ffffff;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
-    text-decoration: none;
-}
-
-.navItems a:hover {    
-    background-color: #380000;    
-    outline-style: solid;
-    outline-width: 2px;
-    outline-color: #000000; 
-    outline-offset: 2px;
-}
-
-.navItems li {        
-    display: inline-block;
-    margin-right: 10px;
-    margin-left: 10px;        
-    margin-top: 4px;
-    font-size: 25px;
-}
-
 /*-- Body Main Content --*/
 .content {    
     text-align:center; 
@@ -137,7 +130,7 @@ th {
     width: 100%;   
     height: 100%;
     display: flex; 
-    margin-top: 75px;
+    margin-top: 20px;
 }
 
 .content .inner {
@@ -161,53 +154,4 @@ th {
     min-height: 100%;   
     padding: 30px;     
     flex-grow: 1;
-}
-
-.contQuery {
-    overflow: auto;
-    height: 33%;
-    padding: 8px;
-    background-color: lightgrey;
-    border-radius: 8px;
-}
-
-.contQuery h1, .contQuery p {
-    color:#333;
-    text-align: left;
-    font-size: 19px;    
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;     
-}
-
-.contQuery h1 {
-    text-align: center;
-    font-size: 36px; 
-}
-
-/*-- Buttons --*/
-.butFont {    
-    color: #ffffff;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
-    font-size: 20px;
-    text-decoration: none;
-    border-radius: 7px;
-    border: darkgrey 1px;
-    background-color: #890b0b;
-    padding-top: 3px;    
-    padding-bottom: 3px;    
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-left: 0px;
-}
-
-.butFont:hover {
-    background-color: #380000;
-}
-
-.request{
-    margin: auto;
-}
-
-.request .request-category{
-   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;    
-   font-weight: bold; 
 }

@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 4400);
+app.set('port', 43575);
 
 /*---------------------------------------*/
 //          DEFAULT Get
@@ -35,7 +35,7 @@ app.set('port', 4400);
 
 app.get('/', function(req,res,next) {
   var context = {};
-  var query = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, units FROM workouts2"
+  var query = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, lbs FROM workouts"
   //Grab every row from the workouts table
   mysql.pool.query(query, function(err, rows, fields){
     if(err){
@@ -43,7 +43,10 @@ app.get('/', function(req,res,next) {
       return;
     }    
     context.results = rows;
-    res.render('home', context);    
+    if(!rows) {
+      context.message = "You have no exercise data!";  
+    }        
+    res.render('home', context);
   });
 });
 
@@ -57,15 +60,17 @@ app.post('/insert', function(req, res) {
       reps: req.body.reps,
       weight: req.body.weight,
       date: req.body.date,
-      units: req.body.units        
+      lbs: req.body.lbs        
   };      
-  mysql.pool.query('INSERT INTO workouts2 SET ?', payload, function(err, results) {            
+  mysql.pool.query('INSERT INTO workouts SET ?', payload, function(err, results) {            
       if (err) {
         console.log("INSERT err: " + err);
         return;
       }      
-      payload.id = results.insertId; //Get the inserted ID - mySQL      
-      res.send(payload); //Send JSON
+      payload.id = results.insertId; //Get the inserted ID - mySQL
+      payload.message = ("Inserted to SQL with ID of: " + results.insertId);
+      console.log(JSON.stringify(payload));
+      res.send(JSON.stringify(payload)); //Send JSON STRING
   });
 });
 
@@ -84,13 +89,14 @@ app.post('/delete', function(req, res) {
     return;
   }    
   //Delete from DB  
-  mysql.pool.query('DELETE from workouts2 WHERE id=?', payload.id, function(err, results) {
+  mysql.pool.query('DELETE from workouts WHERE id=?', payload.id, function(err, results) {
     if (err) {
       console.log("Error: " + err);
       return;
-    }    
-    payload.deletedRows = results.affectedRows; //Set payload affected rows
-    res.send(payload); //Send JSON
+    }        
+    console.log(JSON.stringify(payload));
+    payload.message = ("Affected Rows: " + results.affectedRows + "      Deleted Row Item SQL ID: " + payload.id);
+    res.send(JSON.stringify(payload)); //Send JSON STRING
   });      
 });
 
@@ -101,34 +107,28 @@ app.post('/delete', function(req, res) {
 //Sends to edit page
 app.get('/edit', function(req, res) {
     var context = {};
-    var query = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, units FROM workouts2 WHERE id=?";
+    var query = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, lbs FROM workouts WHERE id=?";
     mysql.pool.query(query, [req.query.id], function(err, rows, fields) {
         if (err) {
             console.log("Error: " + err);
             return;
         }
-        context.results = rows;
-        //Check the box if lbs/kg boolean is true.        
-        if (context.results[0].units === 1) {
-            context.results[0].units = "true";
-        }        
-        console.log("Current text: " + (context.results));
-        console.log("Current update object: " + JSON.stringify(context.results));        
+        context.results = rows;                
+        console.log("Current update row text: " + JSON.stringify(context.results));
         res.render('edit', context);
     });
 });
 
 /*---------------------------------------*/
-//         UPDATE via AJAX
+//         UPDATE via AJAX req
 /*---------------------------------------*/
 
-//USES an AJAX JSON response as required!
 app.post('/update', function(req, res) {
-    var context = {};        
-    if(req.body.units) { req.body.units=1; }
-    else { req.body.units=0; }    
-    
-    var queryValid = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, units FROM workouts2 WHERE id=?";
+    var context = {};
+    var lbs;    
+    if(req.body.lbs) { req.body.lbs=1; }
+    else { req.body.lbs=0; }  
+    var queryValid = "SELECT id, name, reps, weight, date_format(date, '%Y-%m-%d') AS mydate, lbs FROM workouts WHERE id=?";
     mysql.pool.query(queryValid, [req.body.id], function(err, rows, fields) {
         if (err) {
             console.log("Error: " + err);
@@ -137,13 +137,14 @@ app.post('/update', function(req, res) {
         var validate = {};
         validate.results = rows;
         var curVals = validate.results[0];
-        mysql.pool.query('UPDATE workouts2 SET name=?, reps=?, weight=?, date=?, units=? WHERE id=?', 
-        [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight || curVals.weight, req.body.date || curVals.date, req.body.units, req.body.id],
-          function(err, result) {
+        mysql.pool.query('UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?', 
+        [req.body.name || curVals.name, req.body.reps || curVals.reps, req.body.weight || curVals.weight, req.body.date || curVals.date, req.body.lbs, req.body.id],
+          function(err, results) {
             if (err) {
               console.log("Error: " + err);
               return;
             }
+            console.log(results);
             res.redirect('/');
         });
     });        
@@ -157,15 +158,15 @@ app.post('/update', function(req, res) {
 app.get('/reset-table', function(req,res,next) {
   var context = {};  
   console.log("Attempting Delete...");
-  mysql.pool.query("DROP TABLE IF EXISTS workouts2", function(err) {
+  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err) {
     var createString = 
-      "CREATE TABLE workouts2 ("+
+      "CREATE TABLE workouts ("+
       "id INT(11) NOT NULL AUTO_INCREMENT,"+
       "name VARCHAR(255) NOT NULL,"+
       "reps INT(11),"+
       "weight INT(11),"+
       "date DATE,"+
-      "units BOOL,"+
+      "lbs BOOL,"+
       "PRIMARY KEY (id)"+
       ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       mysql.pool.query(createString, function(err) {

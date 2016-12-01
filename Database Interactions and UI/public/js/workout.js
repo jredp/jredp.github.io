@@ -16,9 +16,22 @@ function assignListenButtons() {
     
     var delList = document.getElementsByName("delete");
     for(var i=0; i<delList.length; i++) {                
-        //return false to fix FIREFOX issues, else should use event.preventDefault();
+    //return false to fix FIREFOX issues, else should use event.preventDefault();
         delList[i].setAttribute("onclick", "deleteMe(this); return false;");         
     }        
+}
+
+/*-------------------------------------------*/
+//             Messages
+/*-------------------------------------------*/
+
+function setMsgTimer() {
+    document.getElementById("messageP").style.color = "#4542f4";
+    setTimeout ( "setMsgClear()", 5000 );
+}
+
+function setMsgClear(msgP) {
+    document.getElementById("messageP").style.color = "#ffffff";
 }
 
 /*-------------------------------------------*/
@@ -32,11 +45,17 @@ function addMe(event){
     payload.reps = document.getElementById('reps').value;
     payload.weight = document.getElementById('weight').value;
     payload.date = document.getElementById('date').value;
-    payload.units = 0;
-    if(document.getElementById('units').checked) {payload.units=1};    
+    payload.lbs = 0;
+    if(document.getElementById('lbs').checked) {payload.lbs=1};    
     if ((payload.name=='')||(payload.reps=='')||(payload.weight=='')||(payload.date=='')) {
         alert("You must enter all values!");                
     } else {                                
+        //Reset Fields
+        document.getElementById('name').value = '';
+        document.getElementById('reps').value = '';
+        document.getElementById('weight').value = '';
+        document.getElementById('date').value = '';
+        //Start Submission
         doAddRequest(payload);
     }            
     event.preventDefault();    
@@ -63,51 +82,6 @@ function doAddRequest(payload) {
     request.send(JSON.stringify(payload));    
 }
 
-/*---------------------------------------------------*/
-// Delete the table row, response after submit is JSON
-/*---------------------------------------------------*/
-
-function deleteMe(node){
-    var payload = {};    
-    payload.node = node.parentNode.parentNode.parentNode;
-    payload.id = payload.node.id;    
-    var table = document.getElementById('dataTable');                    
-    var rowCount = table.rows.length;
-    if (payload.id=='') {
-        alert("The id is missing for some reason");
-    }     
-    else if (rowCount <= 1) {
-        alert("Cannot delete all the rows.");        
-    }                   
-    else {                                
-        doDelRequest(payload);
-    }                         
-    //event.preventDefault();
-}      
-
-function doDelRequest(payload) {
-    console.log("Here is your send JSON string: " + JSON.stringify(payload));
-    var request = new XMLHttpRequest();        
-    request.open('POST', '/delete', true); //asynch wait
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.addEventListener('load', function() {                       
-        if (request.status >= 200 && request.status < 400) {            
-            var response = request.responseText;
-            if(response) {
-                console.log("I got an answer");                
-                console.log(response);    
-                var resJSON = JSON.parse(response);
-                resJSON.node = payload.node;
-                console.log(resJSON.id);
-                console.log(resJSON.node);
-                delFromTable(resJSON);
-            } else { console.log("No Callback") }
-        }
-        else { console.log("error" + request.statusText); }
-    });        
-    request.send(JSON.stringify(payload));
-}
-
 /*----------------------------------*/
 // DOM - ADD row at bottom of table
 /*----------------------------------*/
@@ -129,8 +103,8 @@ function addToExistTable(jsonObj) {
         if (j === 3) { td.appendChild(document.createTextNode(jsonObj.weight)); }
         if (j === 4) { td.appendChild(document.createTextNode(jsonObj.date)); }
         if (j === 5) { 
-            var unit = "lbs";
-            if(jsonObj.units == true) { unit = "kg"; }
+            var unit = "kg";
+            if(jsonObj.lbs == true) { unit = "lbs"; }
             td.appendChild(document.createTextNode(unit));
         }
         if (j===6) { //EDIT BUTTON FORM            
@@ -163,6 +137,51 @@ function addToExistTable(jsonObj) {
         newRow.appendChild(td);
     }
     theTable.appendChild(newRow);    
+    document.getElementById("messageP").innerText = jsonObj.message;
+    setMsgTimer();
+}
+
+/*---------------------------------------------------*/
+// Delete the table row, response after submit is JSON
+/*---------------------------------------------------*/
+
+function deleteMe(node){
+    var payload = {};    
+    payload.node = node.parentNode.parentNode.parentNode;
+    payload.id = payload.node.id;    
+    var table = document.getElementById('dataTable');                    
+    var rowCount = table.rows.length;
+    if (payload.id=='') {
+        alert("The id is missing for some reason");
+    }     
+    else if (rowCount <= 1) {
+        alert("Cannot delete all the rows.");        
+    }                   
+    else {                                
+        doDelRequest(payload);
+    }                             
+    event.preventDefault();    
+}      
+
+function doDelRequest(payload) {
+    console.log("Here is your send JSON string: " + JSON.stringify(payload));
+    var request = new XMLHttpRequest();        
+    request.open('POST', '/delete', true); //asynch wait
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.addEventListener('load', function() {                       
+        if (request.status >= 200 && request.status < 400) {            
+            var response = request.responseText;
+            if(response) {
+                console.log("I got an answer");                
+                console.log(response);    
+                var resJSON = JSON.parse(response);
+                resJSON.node = payload.node;                
+                delFromTable(resJSON);
+            } else { console.log("No Callback") }
+        }
+        else { console.log("error" + request.statusText); }
+    });        
+    request.send(JSON.stringify(payload));    
 }
 
 /*--------------------------------*/
@@ -175,4 +194,6 @@ function delFromTable(jsonObj) {
     var currentRow = jsonObj.node;        
     currentRow.parentNode.removeChild(currentRow);
     console.log("I deleted id: " + jsonObj.id);
+    document.getElementById("messageP").innerText = jsonObj.message;
+    setMsgTimer();
 };

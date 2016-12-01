@@ -1,17 +1,28 @@
-<h1>Add New Exercise</h1>
+<!-- //////////////////////////////////////////////
+// Author: Jared Parkinson
+// Mail: parkinja @ oregonstate . edu
+// CS290 - Final Project
+// MySQL Database Exercise Tracker
+//////////////////////////////////////////////// -->
+
+<h1 class="hFont">Add New Exercise</h1>
 	<!-- ADD FORM / -->
-	<form method="post" id="exer">
-    	<label for="curData" class="intSet">Enter a new Exercise:</label>
+	<form method="post" id="exer">    	
+        <label for="name"><strong>Name: </strong></label>
     	<input id="name" type="text" name="name" placeholder="Exer Name">
+        <label for="reps"><strong>Reps: </strong></label>
     	<input id="reps" type="text" name="reps" placeholder="Reps">
+        <label for="weight"><strong>Weight: </strong></label>
     	<input id="weight" type="text" name="weight" placeholder="Weight (default lbs)">
-    	<input id="date" type="date" name="date" placeholder="date">
-    	<input id="units" type="checkbox" name="units" value="checkMe" checked=""><label for="units">Check for Kilograms</label>        
-    	<input id="addMe" type="submit" name="addMe" value="addMe">
+        <label for="date"><strong>Date: </strong></label>
+    	<input id="date" type="date" name="date" placeholder="yyyy-mm-dd">
+        <label for="lbs"><strong>Uncheck for kg. Default lbs</strong></label>        
+    	<input id="lbs" type="checkbox" name="lbs" value="checkMe" checked="">
+    	<input id="addMe" type="submit" name="addMe" value="Add Row">
 	</form>    
 <hr>
-<h1>Your Exercise Data</h1>
-    {{#if results.message}} {{results.message}} {{/if}}
+<strong><p id="messageP">{{#if this.message}} {{this.message}} {{/if}}</p></strong>
+<h1 class="hFont">Your Exercise Data</h1>    
     <!-- Data TABLE -->
 	<table border = 1 class="inSet">
     	<thead>
@@ -33,7 +44,7 @@
             	<td id="col2">{{this.reps}}</td>
             	<td id="col3">{{this.weight}}</td>
             	<td id="col4">{{this.mydate}}</td>
-            	<td id="col5">{{#if this.units}}kg{{else}}lbs{{/if}}</td>
+            	<td id="col5">{{#if this.lbs}}lbs{{else}}kg{{/if}}</td>
             	<td id="col6">
                 	<form method="get" action="/edit">
                     	<input type="hidden" name="id" value="{{this.id}}">
@@ -50,4 +61,9 @@
         	{{/each}} {{/if}}
     	</tbody>
 	</table>    
+
+    <form method="GET" action="/reset-table">
+        <br><br>
+        <input type="submit" class="button" name="reset" value=" RESET TABLE " >
+    </form>
 <script type="text/javascript" src="static/js/workout.js"></script>     
